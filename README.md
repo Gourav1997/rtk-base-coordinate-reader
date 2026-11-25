@@ -86,6 +86,4 @@ covered modified version, you must provide corresponding source code under GPLv3
 and preserve the required notices. The software comes without warranty.
 Third-party dependencies retain their own licenses.
 
-Earlier versions were offered under MIT; permissions already granted under MIT
-remain valid for those versions. GPLv3 does not require notifying the original
-developer about private modifications.
+GPLv3 does not require notifying the original developer about private modifications.
