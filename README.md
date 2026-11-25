@@ -75,3 +75,8 @@ The packaged self-test checks startup with an empty file field, the About Us tab
 - Satellite imagery is a visual reference and may have alignment offsets relative to surveyed coordinates.
 
 Source control excludes virtual environments, build caches, generated Tcl/Tk files, and telemetry logs. The compiled app is distributed as a release asset.
+
+## License
+
+The project's original code is licensed under the [MIT License](LICENSE).
+Copyright (c) 2026 Gourav1997. Third-party dependencies retain their own licenses.
