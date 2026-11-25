@@ -78,5 +78,14 @@ Source control excludes virtual environments, build caches, generated Tcl/Tk fil
 
 ## License
 
-The project's original code is licensed under the [MIT License](LICENSE).
-Copyright (c) 2026 Gourav1997. Third-party dependencies retain their own licenses.
+The project's original code is licensed under the [GNU General Public License version 3](LICENSE)
+(SPDX: `GPL-3.0-only`). Copyright (c) 2026 Gourav1997.
+
+You may copy, modify, and redistribute the code under GPLv3. When distributing a
+covered modified version, you must provide corresponding source code under GPLv3
+and preserve the required notices. The software comes without warranty.
+Third-party dependencies retain their own licenses.
+
+Earlier versions were offered under MIT; permissions already granted under MIT
+remain valid for those versions. GPLv3 does not require notifying the original
+developer about private modifications.

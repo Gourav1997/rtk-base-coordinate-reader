@@ -2,7 +2,7 @@
 import os
 from PyInstaller.utils.hooks import collect_data_files
 
-datas = collect_data_files('customtkinter') + collect_data_files('certifi')
+datas = collect_data_files('customtkinter') + collect_data_files('certifi') + [('LICENSE', '.')]
 # Explicitly include Tcl/Tk support for Python distributions with zipped libraries.
 for variable, destination in [('TCL_LIBRARY', '_tcl_data'), ('TK_LIBRARY', '_tk_data')]:
     if os.environ.get(variable):
