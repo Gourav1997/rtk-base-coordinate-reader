@@ -4,6 +4,10 @@
 
 A Windows desktop app and Python CLI that extract RTK base station coordinates from ArduPilot MAVLink telemetry logs and display timestamped results alongside an Esri satellite map.
 
+![RTK Base Coordinate Reader showing a copyable coordinate table, UTC timestamps, diagnostics, and an Esri satellite map](docs/images/rtk-base-reader.png)
+
+*App screenshot with clearly labeled illustrative demo coordinates. No private flight log data is shown. Imagery attribution appears in the map panel.*
+
 ## Features
 
 - Reads `.tlog` files containing `GPS_RTCM_DATA` (message 233).
@@ -13,6 +17,29 @@ A Windows desktop app and Python CLI that extract RTK base station coordinates f
 - Copies rows as tab-separated text for spreadsheets; double-click a cell to copy its value.
 - Shows base locations on an Esri satellite map, with pan, zoom, and position selection.
 - Keeps parsing diagnostics and coordinate notes below the results table.
+
+## Why use this? / FAQ
+
+### How to extract RTK base station coordinates from an ArduPilot .tlog file
+
+Open the app, select your `.tlog` file, and click **Read file**. The app reads the recorded
+RTCM correction stream to recover the base antenna's latitude, longitude, and ellipsoidal
+altitude. It lists every unique position with first/last UTC receive timestamps and counts,
+so you can inspect position changes and copy the results into a spreadsheet.
+
+### Decode RTCM 1005 / 1006 from GPS_RTCM_DATA
+
+The extractor filters MAVLink `GPS_RTCM_DATA` messages (ID 233), reassembles their fragments
+using the sequence and fragment IDs, validates RTCM3 frames, and decodes messages 1005/1006
+with `pyrtcm`. It converts their ECEF antenna reference coordinates to WGS84 latitude,
+longitude, and ellipsoidal altitude. The same parser powers the UI and the CLI.
+
+### Why does my .tlog show no GPS_RTCM_DATA or no base position?
+
+The log may not contain the RTCM injection stream, or that stream may lack valid 1005/1006
+messages. Missing fragments and damaged or incomplete frames can also prevent decoding;
+check the diagnostics below the table. A rover GPS position alone does not establish the
+base station's antenna coordinates.
 
 ## Use the portable Windows app
 
