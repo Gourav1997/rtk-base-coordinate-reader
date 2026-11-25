@@ -1,0 +1,109 @@
+Title: Tool: Extract RTK Base Station Coordinates from .tlog files (RTCM 1005/1006)
+Category: Ground Control Software
+Suggested initial tags (if available): rtk, mavlink, gnss, telemetry
+
+--- POST BODY START ---
+
+Hi everyone,
+
+If you've ever needed to recover or verify the RTK base station coordinates used during a flight from an ArduPilot `.tlog` file, I built an open-source Windows app and Python CLI to do it automatically.
+
+**GitHub Repository:** https://github.com/Gourav1997/rtk-base-coordinate-reader
+
+### What it does
+
+* Reads `.tlog` files and extracts `GPS_RTCM_DATA` (message 233).
+* Reassembles fragmented MAVLink RTCM packets and validates RTCM3 frames.
+* Decodes **RTCM 1005 / 1006** antenna reference positions and converts ECEF to WGS84 latitude, longitude, and ellipsoidal altitude.
+* Displays coordinates in a copyable table with first/last UTC receive timestamps, observation counts, and station IDs.
+* Plots base locations on Esri satellite imagery.
+
+![RTK Base Coordinate Reader showing the results table and satellite map](https://raw.githubusercontent.com/Gourav1997/rtk-base-coordinate-reader/main/docs/images/rtk-base-reader.png)
+
+*Screenshot uses clearly labeled illustrative demo coordinates, not private flight data.*
+
+You can grab the standalone **RTK-Base-Reader.exe** from the [alpha release](https://github.com/Gourav1997/rtk-base-coordinate-reader/releases/tag/v0.1.0-alpha.1), or run `extract_base.py` from the CLI. The source also includes a one-step dependency installer.
+
+The log must contain recorded `GPS_RTCM_DATA` and valid RTCM 1005/1006 messages. Altitude is ellipsoidal antenna reference point height, not mean sea level. Map imagery needs internet access; log extraction works offline.
+
+The project is licensed under GPLv3. Feedback and bug reports are welcome!
+
+--- POST BODY END ---
+
+PUBLISHING NOTES — TOPIC COVERAGE AND TAG IDEAS
+These notes are for choosing categories and tags, not for pasting into the post body.
+
+Topics this app and its introduction post can cover
+
+1. Recovering RTK base station coordinates from ArduPilot .tlog files.
+2. Decoding RTCM 1005/1006 reference station messages from GPS_RTCM_DATA (233).
+3. Reassembling fragmented MAVLink RTCM packets using sequence and fragment IDs.
+4. Validating RTCM3 frames and diagnosing incomplete or corrupted correction data.
+5. Converting ECEF coordinates to WGS84 latitude, longitude, and ellipsoidal altitude.
+6. Tracking recorded base-position changes with first/last UTC receive timestamps
+   and observation counts, including position updates during survey-in when logged.
+7. Identifying station IDs and distinguishing repeated observations from unique positions.
+8. Checking base locations on Esri satellite imagery against a known location.
+9. Using the Windows desktop app, Python CLI, and one-step dependency installer.
+10. Copying coordinate rows or individual cells into spreadsheets and other tools.
+11. Understanding ellipsoidal ARP height versus mean sea level and RTCM antenna height.
+12. Troubleshooting logs that lack GPS_RTCM_DATA or valid RTCM 1005/1006 messages.
+
+Category
+
+Use Ground Control Software for the introduction. Other GCS may also be suitable
+if the forum requires a more specific subcategory. Keep these related features in
+one introduction topic rather than creating duplicate promotional topics.
+
+Tag candidates
+
+This is a relevance list, not a claim that these tags exist on ArduPilot Discuss.
+Choose a small subset of the tags offered by the forum's composer and respect its
+tag limits. Do not paste the entire list into the post as a block of hashtags.
+
+ArduPilot and telemetry
+  ardupilot, mavlink, telemetry, tlog, flight-logs, log-analysis,
+  flight-log-analysis, gps-rtcm-data
+
+RTK, GNSS, and reference stations
+  rtk, gnss, gps, rtk-gps, rtkgps, gnss-rtk, rtk-base-station,
+  base-station, base-coordinates, reference-station, survey-in,
+  gps-corrections, gnss-corrections
+
+RTCM decoding and transport
+  rtcm, rtcm3, rtcm-1005, rtcm-1006, rtcm-decoder,
+  rtcm-fragmentation, mavlink-fragmentation
+
+Coordinates and positioning
+  ecef, wgs84, geodesy, geodetic-coordinates, coordinate-conversion,
+  latitude-longitude, ellipsoidal-height, antenna-reference-point
+
+Maps and location checking
+  esri, satellite-imagery, satellite-map, mapping, location-verification
+
+Software and workflow
+  python, pymavlink, pyrtcm, windows, desktop-app, tkinter,
+  command-line, cli, open-source, gplv3, data-extraction,
+  coordinate-extraction, spreadsheet, troubleshooting
+
+Hardware context, when relevant to a specific discussion
+  cubepilot, here4
+The initial use case involved a CubePilot Here 4 Base. The extractor reads the
+logged MAVLink/RTCM messages; these hardware tags do not imply a hardware-specific
+decoder or that the app is limited to Here 4 equipment.
+
+Suggested focused combinations
+
+Introduction: rtk, mavlink, gnss, telemetry
+RTCM decoding discussion: rtcm3, rtcm-1005, rtcm-1006, gps-rtcm-data
+Missing log data: tlog, log-analysis, gps-rtcm-data, troubleshooting
+Coordinate interpretation: ecef, wgs84, ellipsoidal-height, base-coordinates
+Source/development discussion: python, pymavlink, pyrtcm, open-source
+
+Scope boundaries
+
+Do not use tags that imply features the app does not provide, such as RINEX
+conversion, PPK processing, NTRIP client/server operation, live correction
+broadcasting, rover navigation, or survey-grade satellite-image measurement.
+The app extracts recorded antenna reference positions; it does not independently
+verify survey accuracy, recover missing messages, or measure geoid/MSL height.
