@@ -16,7 +16,7 @@ A Windows desktop app and Python CLI that extract RTK base station coordinates f
 
 ## Use the portable Windows app
 
-Download **RTK Base Reader.exe** from the repository's **Releases** page and double-click it. Python is included in the executable.
+Download **RTK-Base-Reader.exe** from the repository's **Releases** page and double-click it. Python is included in the executable.
 
 Click **Browse**, choose a `.tlog` file, and click **Read file**. The file field starts empty. Internet is required for map imagery; coordinate extraction works offline.
 
