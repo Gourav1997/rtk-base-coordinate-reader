@@ -1,0 +1,22 @@
+RTK Base Coordinate Reader
+Developer: GouravD
+
+Portable app
+  Double-click dist\RTK Base Reader.exe.
+  The executable includes Python and the required libraries.
+  It can be copied to another Windows x64 computer and run by itself.
+  Select a .tlog file and click Read file to see the coordinates and map.
+  The table includes first/last UTC timestamps and observation counts.
+  Use Copy selected rows / Copy all rows to paste into a spreadsheet.
+  Ctrl+C copies selected rows; double-click a cell to copy its value.
+  Notes and diagnostics appear below the table.
+  Internet is needed for Esri satellite imagery. Log extraction works offline.
+
+Rebuild from source (Windows)
+  Double-click Install Dependencies.bat, or run:
+  python install_dependencies.py
+  .venv\Scripts\python.exe build_app.py
+
+Verify a build
+  "dist\RTK Base Reader.exe" --self-test "C:\path\input.tlog" "C:\path\report.json"
+  This checks GUI startup, the About Us tab, log extraction, and map markers.

@@ -1,0 +1,9 @@
+.venv/
+__pycache__/
+.tk-runtime/
+*.tlog
+build/
+dist/
+.env
+.env.*
+!.env.example

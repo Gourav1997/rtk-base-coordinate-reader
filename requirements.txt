@@ -1,0 +1,5 @@
+# Runtime dependencies. Tkinter is supplied by the Windows Python installer.
+pymavlink>=2.4.50,<3
+pyrtcm>=1.2.1,<2
+tkintermapview>=1.32,<2
+requests>=2.34.2,<3
